@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RecipeCateoryGridView: View {
+struct RecipeCategoryGridView: View {
     @StateObject private var recipeData = RecipeData()
     
     var body: some View {
@@ -28,9 +28,9 @@ struct RecipeCateoryGridView: View {
     }
 }
 
-struct RecipeCateoryGridView_Previews: PreviewProvider {
+struct RecipeCategoryGridView_Previews: PreviewProvider {
     static var previews: some View {
-        RecipeCateoryGridView()
+        RecipeCategoryGridView()
     }
 }
 
