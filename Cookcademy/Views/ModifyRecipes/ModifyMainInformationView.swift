@@ -23,7 +23,7 @@ struct ModifyMainInformationView: View {
                 Spacer()
                 Text(mainInformation.category.rawValue)
             }) {
-                ForEach(MainInformation.RecipeCategory.allCases,
+                ForEach(MainInformation.Category.allCases,
                         id: \.self) { category in
                     Text(category.rawValue)
                 }

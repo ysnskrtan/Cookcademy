@@ -8,34 +8,29 @@
 import SwiftUI
 
 struct RecipeCategoryGridView: View {
-    @StateObject private var recipeData = RecipeData()
+    @EnvironmentObject private var recipeData: RecipeData
     
     var body: some View {
         let columns = [GridItem(), GridItem()]
         NavigationView {
             ScrollView {
                 LazyVGrid(columns: columns, content: {
-                    ForEach(MainInformation.RecipeCategory.allCases, id: \.self) { category in
-                        NavigationLink(destination: RecipesListView(category: category).environmentObject(recipeData),
-                                       label: {
-                            CategoryView(category: category)
-                        })
+                    ForEach(MainInformation.Category.allCases, id: \.self) { category in
+                        NavigationLink(
+                            destination: RecipesListView(viewStyle: .singleCategory(category)),
+                            label: {
+                                CategoryView(category: category)
+                            })
                     }
                 })
-                .navigationTitle("Categories")
             }
+            .navigationTitle("Categories")
         }
     }
 }
 
-struct RecipeCategoryGridView_Previews: PreviewProvider {
-    static var previews: some View {
-        RecipeCategoryGridView()
-    }
-}
-
 struct CategoryView: View {
-    let category: MainInformation.RecipeCategory
+    let category: MainInformation.Category 
     
     var body: some View {
         ZStack {
@@ -45,7 +40,12 @@ struct CategoryView: View {
                 .opacity(0.35)
             Text(category.rawValue)
                 .font(.title)
-                .foregroundColor(.red)
         }
+    }
+}
+
+struct RecipeCategoryGrid_Previews: PreviewProvider {
+    static var previews: some View {
+        RecipeCategoryGridView()
     }
 }

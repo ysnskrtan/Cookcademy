@@ -10,7 +10,7 @@ import Foundation
 class RecipeData: ObservableObject {
     @Published var recipes = Recipe.testRecipes
     
-    func recipes(for category: MainInformation.RecipeCategory) -> [Recipe] {
+    func recipes(for category: MainInformation.Category) -> [Recipe] {
         var filteredRecipes = [Recipe]()
         for recipe in recipes {
             if recipe.mainInformation.category == category {
@@ -18,6 +18,10 @@ class RecipeData: ObservableObject {
             }
         }
         return filteredRecipes
+    }
+    
+    var favoriteRecipes: [Recipe] {
+        recipes.filter { $0.isFavorite }
     }
     
     func add(recipe: Recipe) {
